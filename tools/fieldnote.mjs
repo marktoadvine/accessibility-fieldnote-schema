@@ -44,8 +44,14 @@ export function markdown(record) {
     `# ${record.component.name} — accessibility`, '',
     `Platform: ${record.component.platform}. Component version: ${record.component.version ?? 'unspecified'}.`, '',
     'This record describes intended behavior. Check definitions are not verification results.', '',
-    '## Decisions', ''
   ];
+  if (record.benchmarks?.length) {
+    lines.push('## Benchmarks', '', 'Sources informing decisions; not a conformance claim.', '');
+    for (const source of record.benchmarks) lines.push(`- [${source.name} ${source.version}](${source.url})`);
+    lines.push('');
+  }
+  lines.push('## Decisions', ''
+  );
   for (const decision of record.decisions) {
     lines.push(`### ${decision.question ?? decision.id}`, '', `Status: **${decision.status}**`, '',
       decision.answer ?? decision.reason ?? 'Unresolved.', '');

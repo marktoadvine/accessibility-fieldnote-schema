@@ -1,10 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.1.2 — working branch
 
-- Point schema URLs and setup instructions to `main` after merging 0.1.1.
+- Added optional record-level benchmarks with name, version, and URL; renders source references without implying conformance.
+- Update `schemaVersion` to 0.1.2; benchmark entries remain optional.
 
 ## 0.1.1
+
+- Point schema URLs and setup instructions to `main` after merging.
 
 - Replaced Python tooling and tests with JavaScript, Node.js CI, and a dependency lockfile.
 

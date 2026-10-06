@@ -53,7 +53,7 @@ test('unknown versions and non-record input are rejected', () => {
   assert.ok(validate(null).length);
 });
 test('results require environment and revision and validate date-time formats', () => {
-  const record = { schemaVersion: '0.1.1', fieldnote: 'dialogue.fieldnote.yaml', componentRevision: 'abc123', results: [{ check: 'initial-focus-check', outcome: 'passed', observedAt: '2026-10-06T10:00:00Z', environment: 'Firefox, keyboard', evidence: 'Focused Cancel on opening.' }] };
+  const record = { schemaVersion: '0.1.2', fieldnote: 'dialogue.fieldnote.yaml', componentRevision: 'abc123', results: [{ check: 'initial-focus-check', outcome: 'passed', observedAt: '2026-10-06T10:00:00Z', environment: 'Firefox, keyboard', evidence: 'Focused Cancel on opening.' }] };
   assert.deepEqual(validate(record, true), []);
   const invalidDate = structuredClone(record); invalidDate.results[0].observedAt = 'yesterday';
   assert.ok(validate(invalidDate, true).length);
@@ -77,4 +77,25 @@ test('CLI exit codes distinguish valid, invalid, unreadable, malformed, and unsu
     assert.equal(cli('validate', join(dir, 'missing.yaml')).status, 1);
     assert.equal(cli('render', '--results', 'any.json').status, 2);
   } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('benchmarks are optional and require name, version, and a valid URL', () => {
+  const record = fresh();
+  delete record.benchmarks;
+  assert.deepEqual(validate(record), []);
+  record.benchmarks = [{name:'WCAG',version:'2.2',url:'https://www.w3.org/TR/WCAG22/'}];
+  assert.deepEqual(validate(record), []);
+  for (const field of ['name','version','url']) {
+    const missing = structuredClone(record); delete missing.benchmarks[0][field];
+    assert.ok(validate(missing).length);
+  }
+  record.benchmarks[0].url='not a URL';
+  assert.ok(validate(record).length);
+});
+test('benchmark versions accept dated drafts and render without claiming conformance', () => {
+  const record=fresh();
+  record.benchmarks=[{name:'Example draft benchmark',version:'Draft 2026-10-06',url:'https://example.org/draft/2026-10-06'}];
+  assert.deepEqual(validate(record), []);
+  assert.ok(markdown(record).includes('Example draft benchmark Draft 2026-10-06'));
+  assert.ok(markdown(record).includes('not a conformance claim'));
 });

@@ -6,7 +6,7 @@ These IDs identify checks on AFS itself. They do not assert accessibility confor
 
 One CI job groups:
 
-- Current-version validation: accepts 0.1.1 and rejects records that need migration.
+- Current-version validation: accepts 0.1.2 and rejects records that need migration.
 - Schema constraints: required answers/reasons, duplicate IDs, and decision references.
 - Verification-result structure, including revision and environment.
 - Documentation rendering that preserves open questions.

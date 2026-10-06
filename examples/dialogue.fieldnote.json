@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json",
-  "schemaVersion": "0.1.1",
+  "schemaVersion": "0.1.2",
   "component": {
     "id": "dialogue",
     "name": "Confirmation dialogue",
@@ -73,6 +73,13 @@
       ],
       "method": "manual",
       "procedure": "Open the dialog from its trigger and confirm that keyboard focus lands on Cancel."
+    }
+  ],
+  "benchmarks": [
+    {
+      "name": "WCAG",
+      "version": "2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
     }
   ]
 }

@@ -4,6 +4,12 @@ Platform: web. Component version: 0.1.0.
 
 This record describes intended behavior. Check definitions are not verification results.
 
+## Benchmarks
+
+Sources informing decisions; not a conformance claim.
+
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+
 ## Decisions
 
 ### What names the dialog?
