@@ -9,7 +9,7 @@ Living accessibility decisions for components. A small, versioned sidecar that s
 Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), rename it to `your-component.fieldnote.yaml`, and place it beside your component documentation. Change the component ID and name, then add decisions as you work. No installation is required to write or share the file.
 
 ```yaml
-$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/fieldnote.schema.json
+$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json
 schemaVersion: "0.1.1"
 component:
   id: my-component
@@ -89,7 +89,7 @@ The optional, experimental web modal-dialog guidance pack draws on the [W3C APG 
 
 Profiles are versioned separately from the schema. Updating guidance must prompt review rather than silently rewriting decisions. Automated profile comparison is a future feature.
 
-Only the current schemas live in `schema/`. The `schemaVersion` field identifies the record format; the CLI validates against the current version only. Older schemas remain in Git history. Use a release tag or commit-pinned URL when you need a fixed version. Draft URLs use the `0.1.1` branch until merge; branch URLs are mutable.
+Only the current schemas live in `schema/`. The `schemaVersion` field identifies the record format; the CLI validates against the current version only. Older schemas remain in Git history. Use a release tag or commit-pinned URL when you need a fixed version. Current schema URLs use `main`; they change as the schema is updated.
 
 ## Scope of this prototype
 

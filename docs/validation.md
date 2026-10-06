@@ -5,11 +5,10 @@ its schema, an editor with JSON Schema support, or the optional reference CLI.
 
 ## Files in another repository
 
-Clone AFS somewhere separate from your design system. Until 0.1.1 is merged,
-use its working branch:
+Clone AFS somewhere separate from your design system. Use the current version on `main`:
 
 ```sh
-git clone --branch 0.1.1 https://github.com/marktoadvine/accessibility-fieldnote-schema.git
+git clone https://github.com/marktoadvine/accessibility-fieldnote-schema.git
 cd accessibility-fieldnote-schema
 npm ci
 node tools/fieldnote.mjs validate /absolute/path/to/dialogue.fieldnote.yaml
