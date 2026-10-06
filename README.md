@@ -4,48 +4,66 @@ Living accessibility decisions for components. A small, versioned sidecar that s
 
 **Draft 0.1.0 · web components · experimental.** This records expectations and responsibilities; it does not certify accessibility or WCAG conformance.
 
-## Try the tool
+## Start with one file — no installation
 
-```sh
-python -m http.server 8000
-```
-
-Open **http://localhost:8000/app/**. Work through seven modal-dialog questions, keep unresolved decisions open, and export YAML, JSON, or Markdown documentation. Drafts are stored locally in your browser when available. No account, AI service, or backend is needed. Import supports the worksheet's JSON exports; use the CLI for other records. YAML import is not included yet.
-
-## Use the file
-
-Keep `dialogue.fieldnote.yaml` beside the component or its documentation. See [the example](examples/dialogue.fieldnote.yaml).
+Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), rename it to `your-component.fieldnote.yaml`, and place it beside your component documentation. Change the component ID and name, then add decisions as you work. No Python, Node, account, or authoring app is required to write or share the file.
 
 ```yaml
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/0.1.0/fieldnote.schema.json
 schemaVersion: "0.1.0"
 component:
-  id: dialogue
-  name: Confirmation dialogue
+  id: my-component
+  name: My component
   platform: web
-decisions:
-  - id: return-focus
-    topic: focus
-    question: Where does focus return when the trigger disappears?
-    status: open
+decisions: []
 responsibilities: []
 limitations: []
 checks: []
 ```
 
-## Validate and publish documentation
+Empty lists are valid placeholders, not completed accessibility work. Start with one question:
 
-Python 3.10+ is required.
+```yaml
+decisions:
+  - id: accessible-name
+    topic: semantics
+    question: What gives this component its accessible name?
+    status: open
+```
+
+When decided, change `status` to `decided` and add an `answer`. Use `not-applicable` with a `reason` when the question does not apply. See [the base guide](examples/base/README.md) and [a fuller dialog example](examples/dialogue.fieldnote.yaml).
+
+## Carry it into your design system docs
+
+Keep the fieldnote as the source of truth. Link it from the component page for an immediate, portable handoff. To show its contents inline, your documentation system can parse the YAML (or equivalent JSON) and render decisions, responsibilities, limitations, and checks. Any language or documentation stack can implement this; AFS is the data format, not a Python dependency.
+
+Retain stable decision IDs as the component changes. Add the implementation version when available; keep unresolved questions and limitations visible after release. Check definitions describe how to verify behavior, not whether it has passed.
+
+The optional renderer below generates Markdown for documentation systems that accept it. Generate that page during your docs build rather than maintaining a second copy by hand.
+
+## Optional tools
+
+### Guided authoring
+
+Serve this repository with any static web server and open `/app/`. For example, if Python is already installed:
+
+```sh
+python -m http.server 8000
+```
+
+Open **http://localhost:8000/app/**. The modal-dialog worksheet exports YAML, JSON, and Markdown. Drafts stay in your browser when storage is available. Import supports the worksheet's JSON exports; other fieldnotes can be edited directly. YAML import is not included yet.
+
+### Validation and Markdown generation
+
+The included reference CLI uses Python 3.10+. Install its dependencies only if you want to run it:
 
 ```sh
 pip install -r requirements.txt
-python tools/fieldnote.py validate examples/dialogue.fieldnote.yaml
+python tools/fieldnote.py validate examples/base/component.fieldnote.yaml
 python tools/fieldnote.py render examples/dialogue.fieldnote.yaml > dialogue.accessibility.md
-python -m unittest discover -s tests -v
-node tests/model.test.mjs
 ```
 
-Run the renderer in your documentation build. The YAML is the authored record; Markdown is generated output. A DSDS component can reference the sidecar using its supported reference fields rather than duplicating the decisions. Exact DSDS integration remains to be demonstrated against its validator.
+An editor or another validator supporting JSON Schema Draft 2020-12 can use the `$schema` URL for structural checks. The reference CLI additionally checks duplicate IDs and dangling decision references.
 
 ## The model
 

@@ -1,0 +1,27 @@
+name: AFS checks
+on: [push, pull_request]
+jobs:
+  afs-01:
+    name: AFS-01 — Schema, examples, and export integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up reference validator runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up browser-model test runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install reference validator dependencies
+        run: pip install -r requirements.txt
+      - name: Verify schema constraints and documentation rendering
+        run: python -m unittest discover -s tests -v
+      - name: Validate full and barebones example records
+        run: python tools/fieldnote.py validate examples/*.fieldnote.yaml examples/*.fieldnote.json examples/base/*.fieldnote.yaml
+      - name: Verify worksheet model and export generation
+        run: node tests/model.test.mjs
+      - name: Validate generated worksheet YAML against AFS
+        run: python tools/fieldnote.py validate /tmp/afs-browser-export.yaml

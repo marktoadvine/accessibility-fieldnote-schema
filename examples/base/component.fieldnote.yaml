@@ -1,0 +1,10 @@
+$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/0.1.0/fieldnote.schema.json
+schemaVersion: "0.1.0"
+component:
+  id: my-component
+  name: My component
+  platform: web
+decisions: []
+responsibilities: []
+limitations: []
+checks: []
