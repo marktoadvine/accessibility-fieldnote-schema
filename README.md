@@ -78,4 +78,4 @@ Schemas are versioned under `schema/0.1.0/`. Once released, that directory must 
 
 ## Scope of this prototype
 
-One modal-dialog worksheet; portable records for other web components; structural validation; component-doc generation. Next: real design/implementation trials, richer round-trip editing, evidence integration, and verified DSDS interoperability.
+One modal-dialog worksheet; portable records for other web components; structural validation; component-doc generation. Next: real design/implementation trials, richer round-trip editing, evidence integration, and verified interoperability with design system documentation.
