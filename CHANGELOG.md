@@ -2,6 +2,8 @@
 
 ## 0.1.1 — working branch
 
+- Added an MIT license, contribution guidance, and external-file/editor validation instructions.
+
 - Removed the authoring app, browser tests, generated guidance module, and Node CI setup. Fieldnotes are authored directly in YAML or JSON.
 - Questions are optional: decisions can describe intended component behavior directly.
 - Guidance packs are optional, independently versioned authoring aids; the web dialog pack is explicitly experimental and carries scope, provenance, and a review date.

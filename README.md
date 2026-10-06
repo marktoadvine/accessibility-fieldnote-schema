@@ -41,6 +41,10 @@ Retain stable decision IDs as the component changes. Add the implementation vers
 
 The optional renderer below generates Markdown for documentation systems that accept it. Generate that page during your docs build rather than maintaining a second copy by hand.
 
+## Validate your own entries
+
+See [validation instructions](docs/validation.md) for files in another repository and local editor validation. A hosted service or published package is not required. Remote schema URLs need public access; use local schema files while this repository is private.
+
 ## Optional tools
 
 ### Validation and Markdown generation
@@ -90,3 +94,7 @@ Schemas are versioned under `schema/0.1.1/`. Once released, that directory must 
 ## Scope of this prototype
 
 Portable component records, versioned schemas, examples, and optional validation and Markdown rendering. Next: use the format in real component documentation and refine it from those trials.
+
+## License and contributions
+
+[MIT](LICENSE). See [contribution guidance](CONTRIBUTING.md).
