@@ -1,5 +1,5 @@
-$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/0.1.0/fieldnote.schema.json
-schemaVersion: 0.1.0
+$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/fieldnote.schema.json
+schemaVersion: 0.1.1
 component:
   id: dialogue
   name: Confirmation dialogue
@@ -7,7 +7,7 @@ component:
   version: 0.1.0
 guidance:
   profile: dialog-modal
-  version: 0.1.0
+  version: 0.1.1
 decisions:
 - id: name
   topic: semantics
