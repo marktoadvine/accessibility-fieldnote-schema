@@ -1,0 +1,44 @@
+{
+  "id": "dialog-modal",
+  "version": "0.1.0",
+  "title": "Modal dialog",
+  "source": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+  "notes": "APG is pattern guidance, not a certificate of WCAG conformance. Initial focus and return focus depend on context.",
+  "questions": [
+    {
+      "id": "name",
+      "topic": "semantics",
+      "question": "What names the dialog?"
+    },
+    {
+      "id": "initial-focus",
+      "topic": "focus",
+      "question": "Where does focus go when it opens?"
+    },
+    {
+      "id": "keyboard-boundary",
+      "topic": "keyboard",
+      "question": "How does keyboard navigation behave while it is open?"
+    },
+    {
+      "id": "dismiss",
+      "topic": "keyboard",
+      "question": "How can someone dismiss it?"
+    },
+    {
+      "id": "return-focus",
+      "topic": "focus",
+      "question": "Where does focus return when it closes?"
+    },
+    {
+      "id": "long-content",
+      "topic": "visual",
+      "question": "What happens with long content, zoom, or a small viewport?"
+    },
+    {
+      "id": "reduced-motion",
+      "topic": "motion",
+      "question": "What changes when reduced motion is requested?"
+    }
+  ]
+}
