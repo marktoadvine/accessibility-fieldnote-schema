@@ -2,6 +2,8 @@
 
 ## 0.1.1 — working branch
 
+- Simplified the worksheet layout and copy, removed the sidebar, and adopted Mojo’s palette and self-hosted Inclusive Sans.
+
 - Questions are optional: decisions can describe intended component behavior directly.
 - Guidance packs are optional, independently versioned authoring aids; the web dialog pack is explicitly experimental and carries scope, provenance, and a review date.
 - The worksheet uses a generated copy of the canonical pack and exports source references with decisions.
