@@ -1,5 +1,5 @@
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json
-schemaVersion: 0.1.1
+schemaVersion: 0.1.2
 component:
   id: dialogue
   name: Confirmation dialogue
@@ -9,45 +9,49 @@ guidance:
   profile: dialog-modal
   version: 0.1.1
 decisions:
-- id: name
-  topic: semantics
-  question: What names the dialog?
-  status: open
-- id: initial-focus
-  topic: focus
-  question: Where does focus go when it opens?
-  status: decided
-  answer: For this destructive confirmation, focus the Cancel button when opened.
-  reason: Avoid positioning focus on the destructive action.
-- id: keyboard-boundary
-  topic: keyboard
-  question: How does keyboard navigation behave while it is open?
-  status: open
-- id: dismiss
-  topic: keyboard
-  question: How can someone dismiss it?
-  status: open
-- id: return-focus
-  topic: focus
-  question: Where does focus return when it closes?
-  status: open
-- id: long-content
-  topic: visual
-  question: What happens with long content, zoom, or a small viewport?
-  status: open
-- id: reduced-motion
-  topic: motion
-  question: What changes when reduced motion is requested?
-  status: open
+  - id: name
+    topic: semantics
+    question: What names the dialog?
+    status: open
+  - id: initial-focus
+    topic: focus
+    question: Where does focus go when it opens?
+    status: decided
+    answer: For this destructive confirmation, focus the Cancel button when opened.
+    reason: Avoid positioning focus on the destructive action.
+  - id: keyboard-boundary
+    topic: keyboard
+    question: How does keyboard navigation behave while it is open?
+    status: open
+  - id: dismiss
+    topic: keyboard
+    question: How can someone dismiss it?
+    status: open
+  - id: return-focus
+    topic: focus
+    question: Where does focus return when it closes?
+    status: open
+  - id: long-content
+    topic: visual
+    question: What happens with long content, zoom, or a small viewport?
+    status: open
+  - id: reduced-motion
+    topic: motion
+    question: What changes when reduced motion is requested?
+    status: open
 responsibilities:
-- id: provide-title
-  owner: consumer
-  requirement: Provide a visible title that describes the action.
+  - id: provide-title
+    owner: consumer
+    requirement: Provide a visible title that describes the action.
 limitations: []
 checks:
-- id: initial-focus-check
-  decisions:
-  - initial-focus
-  method: manual
-  procedure: Open the dialog from its trigger and confirm that keyboard focus lands
-    on Cancel.
+  - id: initial-focus-check
+    decisions:
+      - initial-focus
+    method: manual
+    procedure: Open the dialog from its trigger and confirm that keyboard focus
+      lands on Cancel.
+benchmarks:
+  - name: WCAG
+    version: "2.2"
+    url: https://www.w3.org/TR/WCAG22/

@@ -2,7 +2,7 @@
 
 Living accessibility decisions for components. A small, versioned sidecar that starts during design and ships with component documentation.
 
-**Draft 0.1.1 · web components · experimental.** This records expectations and responsibilities; it does not certify accessibility or WCAG conformance.
+**Draft 0.1.2 · web components · experimental.** This records expectations and responsibilities; it does not certify accessibility or WCAG conformance.
 
 ## Start with one file — no installation
 
@@ -10,7 +10,7 @@ Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), ren
 
 ```yaml
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json
-schemaVersion: "0.1.1"
+schemaVersion: "0.1.2"
 component:
   id: my-component
   name: My component
@@ -64,6 +64,7 @@ An editor or another validator supporting JSON Schema Draft 2020-12 can use the 
 | Field | Purpose |
 | --- | --- |
 | `component` | Identity, platform, optional implementation version and design/source links |
+| `benchmarks` | Optional record-level source names, versions, and URLs; no conformance claim |
 | `guidance` | Optional profile ID and the version used to author the decisions |
 | `decisions` | Stable IDs, topics, optional questions, status, answers, rationale, and optional versioned source references |
 | `responsibilities` | What designers, implementers, or consumers must supply |
@@ -72,13 +73,28 @@ An editor or another validator supporting JSON Schema Draft 2020-12 can use the 
 
 `open` is a valid state. `decided` requires an answer; `not-applicable` requires a reason. The CLI also rejects duplicate IDs and dangling decision references. Schema validity does not establish that the guidance, implementation, or answers are correct.
 
-JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or `.fieldnote.json` suffix. Unknown fields are rejected in 0.1.1 to catch mistakes early.
+JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or `.fieldnote.json` suffix. Unknown fields are rejected in 0.1.2 to catch mistakes early.
 
 ## Separate verification results
 
 [The results schema](schema/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `node tools/fieldnote.mjs validate --results results.json`.
 
 Result validation currently validates structure; it does not resolve the linked fieldnote or prove the check exists. No sample result is presented as a real assessment. Updating a component never automatically renews old results.
+
+## Benchmarks
+
+Optionally identify the sources informing a record:
+
+```yaml
+benchmarks:
+  - name: WCAG
+    version: "2.2"
+    url: https://www.w3.org/TR/WCAG22/
+```
+
+This does not assert coverage or conformance. Benchmark versions are independent
+of `schemaVersion`. For a draft, identify its date in `version` and use the
+exact dated source URL. Individual criteria remain optional decision references.
 
 ## Guidance and maintenance
 

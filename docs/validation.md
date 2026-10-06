@@ -30,7 +30,7 @@ decisions:
 ```
 
 Add an `answer`, or leave the status `open` while the decision is unresolved.
-Questions and guidance packs are optional in 0.1.1. Custom component behavior
+Questions and guidance packs are optional in 0.1.2. Custom component behavior
 uses the same fields; unknown fields are rejected.
 
 ## Editor validation

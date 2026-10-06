@@ -1,19 +1,19 @@
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json
-schemaVersion: 0.1.1
+schemaVersion: 0.1.2
 component:
   id: filter-builder
   name: Custom filter builder
   platform: web
 decisions:
-- id: remove-filter
-  topic: focus
-  status: decided
-  answer: "When a filter is removed, focus moves to the next filter\u2019s Remove\
-    \ control, then the previous one if no next filter exists. If none remain, focus\
-    \ moves to Add filter."
-- id: removal-feedback
-  topic: state
-  status: open
+  - id: remove-filter
+    topic: focus
+    status: decided
+    answer: When a filter is removed, focus moves to the next filter’s Remove
+      control, then the previous one if no next filter exists. If none remain,
+      focus moves to Add filter.
+  - id: removal-feedback
+    topic: state
+    status: open
 responsibilities: []
 limitations: []
 checks: []
