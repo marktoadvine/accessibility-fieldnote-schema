@@ -11,10 +11,8 @@ use its working branch:
 ```sh
 git clone --branch 0.1.1 https://github.com/marktoadvine/accessibility-fieldnote-schema.git
 cd accessibility-fieldnote-schema
-python -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-python tools/fieldnote.py validate /absolute/path/to/dialogue.fieldnote.yaml
+npm ci
+node tools/fieldnote.mjs validate /absolute/path/to/dialogue.fieldnote.yaml
 ```
 
 The repository currently requires GitHub access because it is private.

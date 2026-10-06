@@ -2,6 +2,8 @@
 
 ## 0.1.1 — working branch
 
+- Replaced Python tooling and tests with JavaScript, Node.js CI, and a dependency lockfile.
+
 - Added an MIT license, contribution guidance, and external-file/editor validation instructions.
 
 - Removed the authoring app, browser tests, generated guidance module, and Node CI setup. Fieldnotes are authored directly in YAML or JSON.

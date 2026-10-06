@@ -15,10 +15,10 @@ One CI job groups:
 Run the same checks locally:
 
 ```sh
-python -m unittest discover -s tests -v
-python tools/fieldnote.py validate examples/*.fieldnote.yaml examples/*.fieldnote.json examples/base/*.fieldnote.yaml
+npm test
+node tools/fieldnote.mjs validate examples/*.fieldnote.yaml examples/*.fieldnote.json examples/base/*.fieldnote.yaml
 ```
 
 Future independent check groups receive new IDs (AFS-02, AFS-03, …). Keep AFS-01 stable so contributors and branch protection can identify it.
 
-Python is used for these repository checks, not required for adopting the fieldnote format.
+Node.js is used for these repository checks, not required for adopting the fieldnote format.

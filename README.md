@@ -35,7 +35,7 @@ When decided, change `status` to `decided` and add an `answer`. Use `not-applica
 
 ## Carry it into your design system docs
 
-Keep the fieldnote as the source of truth. Link it from the component page for an immediate, portable handoff. To show its contents inline, your documentation system can parse the YAML (or equivalent JSON) and render decisions, responsibilities, limitations, and checks. Any language or documentation stack can implement this; AFS is the data format, not a Python dependency.
+Keep the fieldnote as the source of truth. Link it from the component page for an immediate, portable handoff. To show its contents inline, your documentation system can parse the YAML (or equivalent JSON) and render decisions, responsibilities, limitations, and checks. Any language or documentation stack can implement this; AFS is the data format, not a JavaScript dependency.
 
 Retain stable decision IDs as the component changes. Add the implementation version when available; keep unresolved questions and limitations visible after release. Check definitions describe how to verify behavior, not whether it has passed.
 
@@ -49,12 +49,12 @@ See [validation instructions](docs/validation.md) for files in another repositor
 
 ### Validation and Markdown generation
 
-The included reference CLI uses Python 3.10+. Install its dependencies only if you want to run it:
+The included reference CLI uses Node.js 22+. Install its dependencies only if you want to run it:
 
 ```sh
-pip install -r requirements.txt
-python tools/fieldnote.py validate examples/base/component.fieldnote.yaml
-python tools/fieldnote.py render examples/dialogue.fieldnote.yaml > dialogue.accessibility.md
+npm ci
+node tools/fieldnote.mjs validate examples/base/component.fieldnote.yaml
+node tools/fieldnote.mjs render examples/dialogue.fieldnote.yaml > dialogue.accessibility.md
 ```
 
 An editor or another validator supporting JSON Schema Draft 2020-12 can use the `$schema` URL for structural checks. The reference CLI additionally checks duplicate IDs and dangling decision references.
@@ -76,7 +76,7 @@ JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or
 
 ## Separate verification results
 
-[The results schema](schema/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `python tools/fieldnote.py validate --results results.json`.
+[The results schema](schema/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `node tools/fieldnote.mjs validate --results results.json`.
 
 Result validation currently validates structure; it does not resolve the linked fieldnote or prove the check exists. No sample result is presented as a real assessment. Updating a component never automatically renews old results.
 
