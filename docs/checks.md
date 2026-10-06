@@ -6,6 +6,8 @@ These IDs identify checks on AFS itself. They do not assert accessibility confor
 
 One CI job groups:
 
+- Version compatibility: 0.1.0 retains required questions; 0.1.1 accepts behavior records without them.
+- Canonical experimental guidance pack and browser module synchronization.
 - Schema constraints: required answers/reasons, duplicate IDs, and decision references.
 - Verification-result structure, including revision and environment.
 - Documentation rendering that preserves open questions.
@@ -15,6 +17,7 @@ One CI job groups:
 Run the same checks locally:
 
 ```sh
+python tools/sync_profile.py --check
 python -m unittest discover -s tests -v
 python tools/fieldnote.py validate examples/*.fieldnote.yaml examples/*.fieldnote.json examples/base/*.fieldnote.yaml
 node tests/model.test.mjs

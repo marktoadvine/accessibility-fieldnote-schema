@@ -6,7 +6,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 def load(path):
     return yaml.safe_load(pathlib.Path(path).read_text())
 def validate(record, results=False):
-    schema = json.loads((ROOT / 'schema/0.1.0' / ('results.schema.json' if results else 'fieldnote.schema.json')).read_text())
+    version = record.get('schemaVersion') if isinstance(record, dict) else None
+    if version not in {'0.1.0', '0.1.1'}:
+        return ['schemaVersion: expected 0.1.0 or 0.1.1']
+    schema = json.loads((ROOT / 'schema' / version / ('results.schema.json' if results else 'fieldnote.schema.json')).read_text())
     errors = [f'{"/".join(map(str,e.absolute_path)) or "$"}: {e.message}' for e in Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(record)]
     if errors or results: return errors
     for key in ['decisions','responsibilities','limitations','checks']:
@@ -21,7 +24,7 @@ def validate(record, results=False):
 def markdown(record):
     lines = [f"# {record['component']['name']} — accessibility", '', f"Platform: {record['component']['platform']}. Component version: {record['component'].get('version','unspecified')}.", '', 'This record describes intended behavior. Check definitions are not verification results.', '', '## Decisions', '']
     for d in record['decisions']:
-        lines.extend([f"### {d['question']}", '', f"Status: **{d['status']}**", '', d.get('answer',d.get('reason','Unresolved.')), ''])
+        lines.extend([f"### {d.get('question', d['id'])}", '', f"Status: **{d['status']}**", '', d.get('answer',d.get('reason','Unresolved.')), ''])
         if d.get('answer') and d.get('reason'): lines.extend([f"Reason: {d['reason']}", ''])
         for r in d.get('references',[]): lines.extend([f"Source: [{r['standard']} {r['version']} {r.get('criterion','')}]({r['url']})", ''])
     for title,key in [('Responsibilities','responsibilities'),('Known limitations','limitations'),('Check definitions','checks')]:

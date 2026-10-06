@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/0.1.1/schema/0.1.1/results.schema.json",
+  "title": "AFS verification results 0.1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "0.1.1"
+    },
+    "fieldnote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "componentRevision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "check": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "outcome": {
+            "enum": [
+              "passed",
+              "failed",
+              "inconclusive"
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "environment": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "check",
+          "outcome",
+          "observedAt",
+          "environment",
+          "evidence"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "fieldnote",
+    "componentRevision",
+    "results"
+  ]
+}

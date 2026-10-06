@@ -25,3 +25,5 @@ jobs:
         run: node tests/model.test.mjs
       - name: Validate generated worksheet YAML against AFS
         run: python tools/fieldnote.py validate /tmp/afs-browser-export.yaml
+      - name: Verify experimental guidance pack synchronization
+        run: python tools/sync_profile.py --check

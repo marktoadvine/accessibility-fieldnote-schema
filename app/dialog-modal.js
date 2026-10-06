@@ -1,4 +1,5 @@
-{
+// Generated from profiles/dialog-modal.json; run tools/sync_profile.py.
+export default {
   "id": "dialog-modal",
   "version": "0.1.1",
   "title": "Modal dialog",
@@ -108,4 +109,4 @@
       "version": "unversioned living page"
     }
   ]
-}
+};

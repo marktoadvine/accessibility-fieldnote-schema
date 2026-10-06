@@ -30,3 +30,15 @@ That documents intent; it does not claim the implementation was tested. Use `not
 Add `responsibilities`, `limitations`, and `checks` when needed. Keep their empty lists until then. The [dialog example](../dialogue.fieldnote.yaml) shows a fuller record.
 
 Link the file from your component page, or render it with your existing documentation tooling. Continue editing this same record after implementation. Keep decision IDs stable and record known limitations rather than removing unresolved questions at release.
+
+Questions and guidance packs are optional. You can instead record behavior directly:
+
+```yaml
+decisions:
+  - id: activation
+    topic: keyboard
+    status: decided
+    answer: The native button activates through its standard keyboard interaction.
+```
+
+See [the custom-component example](../custom.fieldnote.yaml) for a record without questions or a pack.
