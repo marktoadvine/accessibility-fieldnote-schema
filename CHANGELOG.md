@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.1.1 — working branch
+## Unreleased
+
+- Point schema URLs and setup instructions to `main` after merging 0.1.1.
+
+## 0.1.1
 
 - Replaced Python tooling and tests with JavaScript, Node.js CI, and a dependency lockfile.
 
