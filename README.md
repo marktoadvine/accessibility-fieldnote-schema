@@ -9,7 +9,7 @@ Living accessibility decisions for components. A small, versioned sidecar that s
 Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), rename it to `your-component.fieldnote.yaml`, and place it beside your component documentation. Change the component ID and name, then add decisions as you work. No installation is required to write or share the file.
 
 ```yaml
-$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/0.1.1/schema/0.1.1/fieldnote.schema.json
+$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/fieldnote.schema.json
 schemaVersion: "0.1.1"
 component:
   id: my-component
@@ -76,7 +76,7 @@ JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or
 
 ## Separate verification results
 
-[The results schema](schema/0.1.1/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `python tools/fieldnote.py validate --results results.json`.
+[The results schema](schema/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `python tools/fieldnote.py validate --results results.json`.
 
 Result validation currently validates structure; it does not resolve the linked fieldnote or prove the check exists. No sample result is presented as a real assessment. Updating a component never automatically renews old results.
 
@@ -89,7 +89,7 @@ The optional, experimental web modal-dialog guidance pack draws on the [W3C APG 
 
 Profiles are versioned separately from the schema. Updating guidance must prompt review rather than silently rewriting decisions. Automated profile comparison is a future feature.
 
-Schemas are versioned under `schema/0.1.1/`. Once released, that directory must remain unchanged; incompatible changes require a new version. Draft 0.1.1 URLs use the `0.1.1` branch so they resolve before merge. Branch URLs are mutable; release tags or commit-pinned URLs can provide immutable retrieval later. The 0.1.0 schema remains available unchanged.
+Only the current schemas live in `schema/`. The `schemaVersion` field identifies the record format; the CLI validates against the current version only. Older schemas remain in Git history. Use a release tag or commit-pinned URL when you need a fixed version. Draft URLs use the `0.1.1` branch until merge; branch URLs are mutable.
 
 ## Scope of this prototype
 

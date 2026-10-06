@@ -6,10 +6,11 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 def load(path):
     return yaml.safe_load(pathlib.Path(path).read_text())
 def validate(record, results=False):
+    schema = json.loads((ROOT / 'schema' / ('results.schema.json' if results else 'fieldnote.schema.json')).read_text())
     version = record.get('schemaVersion') if isinstance(record, dict) else None
-    if version not in {'0.1.0', '0.1.1'}:
-        return ['schemaVersion: expected 0.1.0 or 0.1.1']
-    schema = json.loads((ROOT / 'schema' / version / ('results.schema.json' if results else 'fieldnote.schema.json')).read_text())
+    current = schema['properties']['schemaVersion']['const']
+    if version != current:
+        return [f'schemaVersion: expected {current}; migrate the record or use an older AFS checkout']
     errors = [f'{"/".join(map(str,e.absolute_path)) or "$"}: {e.message}' for e in Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(record)]
     if errors or results: return errors
     for key in ['decisions','responsibilities','limitations','checks']:

@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/0.1.0/results.schema.json",
-  "title": "AFS verification results 0.1.0",
+  "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/results.schema.json",
+  "title": "AFS verification results 0.1.1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "schemaVersion": {
-      "const": "0.1.0"
+      "const": "0.1.1"
     },
     "fieldnote": {
       "type": "string",

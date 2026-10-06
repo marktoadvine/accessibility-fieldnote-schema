@@ -19,7 +19,7 @@ python tools/fieldnote.py validate /absolute/path/to/dialogue.fieldnote.yaml
 
 The repository currently requires GitHub access because it is private.
 Replace the final path with your own file. YAML and JSON are both accepted.
-The CLI selects the local schema using `schemaVersion`; it does not fetch the
+The CLI checks `schemaVersion` against the current local schema; it does not fetch the
 record's `$schema` URL. It exits with status 0 on success and 1 on failure,
 so the same command can run in your documentation build or CI.
 
@@ -44,7 +44,7 @@ schema in workspace settings. Replace the schema path with your checkout:
 ```json
 {
   "yaml.schemas": {
-    "/absolute/path/to/accessibility-fieldnote-schema/schema/0.1.1/fieldnote.schema.json": "**/*.fieldnote.yaml"
+    "/absolute/path/to/accessibility-fieldnote-schema/schema/fieldnote.schema.json": "**/*.fieldnote.yaml"
   }
 }
 ```
@@ -61,7 +61,7 @@ source accuracy, or WCAG conformance.
 
 ## Public distribution
 
-A public repository with versioned schema URLs is sufficient; npm or PyPI
+A public repository with reachable schema URLs is sufficient; npm or PyPI
 publication is optional. For a release, merge reviewed changes, create a
 version tag, and publish a GitHub release with migration notes. Use a release
 tag or commit-pinned schema URL for reproducible validation. Branch URLs are
@@ -70,3 +70,7 @@ mutable drafts.
 The MIT license covers AFS's schemas, documentation, examples, and tooling.
 Authoring a fieldnote with AFS does not require licensing your own component
 or record under MIT. Referenced standards retain their own licenses.
+
+Only current schemas are stored in `schema/`. To validate an older format, use
+a matching Git tag or commit checkout, or migrate the record to the current
+`schemaVersion`. There are no per-version schema folders.

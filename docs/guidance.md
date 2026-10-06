@@ -38,4 +38,4 @@ Edit `profiles/dialog-modal.json` directly. Update its version and review date w
 
 Change `schemaVersion` to `0.1.1` and `$schema` to the 0.1.1 schema URL. Keep answers, references, checks, and guidance-pack versions intact. Questions may remain; they are now optional. This migration does not review your decisions against new guidance.
 
-The CLI validates either version using the corresponding local schema. Edit fieldnotes directly in YAML or JSON.
+The CLI validates the current version only. For an older record, migrate it or use a matching historical checkout. Edit fieldnotes directly in YAML or JSON.

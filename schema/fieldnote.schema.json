@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/0.1.0/fieldnote.schema.json",
-  "title": "Accessibility Fieldnote Schema 0.1.0",
+  "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/fieldnote.schema.json",
+  "title": "Accessibility Fieldnote Schema 0.1.1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -10,7 +10,7 @@
       "format": "uri"
     },
     "schemaVersion": {
-      "const": "0.1.0"
+      "const": "0.1.1"
     },
     "component": {
       "type": "object",
@@ -62,7 +62,8 @@
       "required": [
         "profile",
         "version"
-      ]
+      ],
+      "description": "Optional provenance for an authoring aid, not a mandatory checklist or completeness claim."
     },
     "decisions": {
       "type": "array",
@@ -88,7 +89,8 @@
           },
           "question": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Optional authoring prompt. A decision can record behavior directly without a question."
           },
           "status": {
             "enum": [
@@ -139,7 +141,6 @@
         "required": [
           "id",
           "topic",
-          "question",
           "status"
         ],
         "allOf": [

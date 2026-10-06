@@ -28,10 +28,8 @@ class FieldnoteTests(unittest.TestCase):
         self.assertIn('remove-filter',doc)
         self.assertIn('removal-feedback',doc)
         self.assertIn('**open**',doc)
-    def test_version_010_keeps_question_requirement(self):
+    def test_older_schema_version_rejected(self):
         self.record['schemaVersion']='0.1.0'
-        self.assertEqual(validate(self.record),[])
-        del self.record['decisions'][0]['question']
         self.assertTrue(validate(self.record))
     def test_version_011_allows_omitted_question(self):
         del self.record['decisions'][0]['question']
@@ -40,7 +38,7 @@ class FieldnoteTests(unittest.TestCase):
         self.record['schemaVersion']='../../missing'
         self.assertTrue(validate(self.record))
     def test_results_need_environment_and_revision(self):
-        result={'schemaVersion':'0.1.0','fieldnote':'dialogue.fieldnote.yaml','componentRevision':'abc123','results':[{'check':'initial-focus-check','outcome':'passed','observedAt':'2026-10-06T10:00:00Z','environment':'Firefox, keyboard','evidence':'Focused Cancel on opening.'}]}
+        result={'schemaVersion':'0.1.1','fieldnote':'dialogue.fieldnote.yaml','componentRevision':'abc123','results':[{'check':'initial-focus-check','outcome':'passed','observedAt':'2026-10-06T10:00:00Z','environment':'Firefox, keyboard','evidence':'Focused Cancel on opening.'}]}
         self.assertEqual(validate(result,True),[])
         del result['results'][0]['environment'];self.assertTrue(validate(result,True))
 if __name__=='__main__': unittest.main()

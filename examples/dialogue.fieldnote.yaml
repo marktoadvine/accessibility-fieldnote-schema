@@ -1,4 +1,4 @@
-$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/0.1.1/schema/0.1.1/fieldnote.schema.json
+$schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/schema/fieldnote.schema.json
 schemaVersion: 0.1.1
 component:
   id: dialogue
