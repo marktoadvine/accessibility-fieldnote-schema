@@ -6,7 +6,7 @@ Living accessibility decisions for components. A small, versioned sidecar that s
 
 ## Start with one file — no installation
 
-Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), rename it to `your-component.fieldnote.yaml`, and place it beside your component documentation. Change the component ID and name, then add decisions as you work. No Python, Node, account, or authoring app is required to write or share the file.
+Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), rename it to `your-component.fieldnote.yaml`, and place it beside your component documentation. Change the component ID and name, then add decisions as you work. No installation is required to write or share the file.
 
 ```yaml
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/0.1.1/schema/0.1.1/fieldnote.schema.json
@@ -42,16 +42,6 @@ Retain stable decision IDs as the component changes. Add the implementation vers
 The optional renderer below generates Markdown for documentation systems that accept it. Generate that page during your docs build rather than maintaining a second copy by hand.
 
 ## Optional tools
-
-### Guided authoring
-
-Serve this repository with any static web server and open `/app/`. For example, if Python is already installed:
-
-```sh
-python -m http.server 8000
-```
-
-Open **http://localhost:8000/app/**. The experimental web modal-dialog worksheet exports YAML, JSON, and Markdown. Drafts stay in your browser when storage is available. Import supports the worksheet's JSON exports; other fieldnotes can be edited directly. YAML import is not included yet.
 
 ### Validation and Markdown generation
 
@@ -91,7 +81,7 @@ Result validation currently validates structure; it does not resolve the linked 
 **AFS structures records; guidance packs help author them.** Neither questions nor packs are mandatory. Record custom behavior directly with a decision ID, topic, status, and answer; see [the custom component example](examples/custom.fieldnote.yaml) and [guidance/migration documentation](docs/guidance.md).
 
 
-The optional, experimental web modal-dialog guidance pack draws on the [W3C APG modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/). APG guidance and WCAG requirements are distinct. Questions need contextual answers; the tool does not prescribe one initial focus target for every dialog.
+The optional, experimental web modal-dialog guidance pack draws on the [W3C APG modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/). APG guidance and WCAG requirements are distinct. Questions need contextual answers; the pack does not prescribe one initial focus target for every dialog.
 
 Profiles are versioned separately from the schema. Updating guidance must prompt review rather than silently rewriting decisions. Automated profile comparison is a future feature.
 
@@ -99,4 +89,4 @@ Schemas are versioned under `schema/0.1.1/`. Once released, that directory must 
 
 ## Scope of this prototype
 
-One modal-dialog worksheet; portable records for other web components; structural validation; component-doc generation. Next: real design/implementation trials, richer round-trip editing, evidence integration, and verified interoperability with design system documentation.
+Portable component records, versioned schemas, examples, and optional validation and Markdown rendering. Next: use the format in real component documentation and refine it from those trials.

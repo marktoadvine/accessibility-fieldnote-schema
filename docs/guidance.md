@@ -22,7 +22,7 @@ Packs supply authoring prompts scoped to a platform and interaction. They are se
 
 The [experimental modal-dialog pack](../profiles/dialog-modal.json) declares its platform, pack version, sources, and review date. Its date describes review of the pack; it is not the publication date of a standard. Its source is a living APG page, not a versioned WCAG requirement catalogue. The prompts are author-written interpretations and are neither exhaustive nor native-app guidance.
 
-The worksheet consumes that pack and includes its source references on each exported decision. The top-level `guidance` field records pack identity/version; per-decision `references` can record the sources relevant to that particular expectation. Do not attach a source that does not support the decision.
+Use the pack as an optional reference while editing a fieldnote. The top-level `guidance` field records pack identity/version; per-decision `references` can record the sources relevant to that particular expectation. Do not attach a source that does not support the decision.
 
 ## When guidance changes
 
@@ -32,16 +32,10 @@ WCAG requirements, platform documentation, and APG pattern guidance have differe
 
 ## Pack maintenance
 
-Edit `profiles/dialog-modal.json`, then run:
-
-```sh
-python tools/sync_profile.py
-```
-
-This updates the browser module. AFS-01 checks that the module matches the source. This check proves synchronization, not the correctness or completeness of the guidance.
+Edit `profiles/dialog-modal.json` directly. Update its version and review date when its prompts or sources change. Existing fieldnotes retain the pack version used to author them.
 
 ## Updating a 0.1.0 record
 
 Change `schemaVersion` to `0.1.1` and `$schema` to the 0.1.1 schema URL. Keep answers, references, checks, and guidance-pack versions intact. Questions may remain; they are now optional. This migration does not review your decisions against new guidance.
 
-The CLI validates either version using the corresponding local schema. The worksheet imports its supported 0.1.0/0.1.1 dialog exports and updates the record format to 0.1.1 without changing the recorded pack version. Other components should be edited directly.
+The CLI validates either version using the corresponding local schema. Edit fieldnotes directly in YAML or JSON.
