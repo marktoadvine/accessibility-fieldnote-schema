@@ -36,10 +36,4 @@ Edit `profiles/dialog-modal.json` directly. Update its version and review date w
 
 ## Updating an older record
 
-Change `schemaVersion` to `0.1.2` and `$schema` to the current schema URL. Keep answers, references, checks, and guidance-pack versions intact. Questions may remain; they are now optional. This migration does not review your decisions against new guidance.
-
-The CLI validates the current version only. For an older record, migrate it or use a matching historical checkout. Edit fieldnotes directly in YAML or JSON.
-
-## Benchmarks in 0.1.2
-
-Change `schemaVersion` to `0.1.2`. No benchmark is required, and existing decisions and guidance versions can remain unchanged. Add `benchmarks` only for sources that informed the record.
+See [migration to 0.2.0](migration.md). Schema versions, benchmarks, and guidance-pack versions are independent. Keep existing sources and evidence intact; a format migration does not review decisions against new guidance.

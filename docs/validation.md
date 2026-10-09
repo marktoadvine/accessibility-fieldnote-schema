@@ -14,10 +14,9 @@ npm ci
 node tools/fieldnote.mjs validate /absolute/path/to/dialogue.fieldnote.yaml
 ```
 
-The repository currently requires GitHub access because it is private.
 Replace the final path with your own file. YAML and JSON are both accepted.
 The CLI checks `schemaVersion` against the current local schema; it does not fetch the
-record's `$schema` URL. It exits with status 0 on success and 1 on failure,
+record's `$schema` URL. It exits with status 0 on success, 1 for invalid records or unreadable files, and 2 for invalid command usage,
 so the same command can run in your documentation build or CI.
 
 For example, a `decided` entry without an `answer` fails validation:
@@ -30,7 +29,7 @@ decisions:
 ```
 
 Add an `answer`, or leave the status `open` while the decision is unresolved.
-Questions and guidance packs are optional in 0.1.2. Custom component behavior
+Questions and guidance packs are optional in 0.2.0. Custom component behavior
 uses the same fields; unknown fields are rejected.
 
 ## Editor validation
@@ -53,8 +52,23 @@ Git client is authenticated; use the local mapping in that case.
 
 Generic schema validators check fields, types, and required answers or
 reasons. The reference CLI also detects duplicate IDs and checks that decision
-references point to existing entries. Neither verifies accessibility behavior,
+references point to existing entries and stay within configuration scope. Neither verifies accessibility behavior,
 source accuracy, or WCAG conformance.
+
+## Configurations and results
+
+Validate the complete record before rendering a selected view:
+
+```sh
+node tools/fieldnote.mjs validate examples/button.fieldnote.yaml
+node tools/fieldnote.mjs render examples/button.fieldnote.yaml --configuration secondary
+node tools/fieldnote.mjs resolve examples/button.fieldnote.yaml --configuration secondary
+node tools/fieldnote.mjs validate --results examples/button.results.json
+```
+
+Results validation reads the linked local fieldnote and verifies check IDs and
+configuration scope. It accepts no URL fetches. See [configuration rules](configurations.md)
+and [migration](migration.md). A valid result is not proof that a check ran.
 
 ## Public distribution
 

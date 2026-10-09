@@ -1,8 +1,8 @@
 # Accessibility Fieldnote Schema
 
-Living accessibility decisions for components. A small, versioned sidecar that starts during design and ships with component documentation.
+Living accessibility decisions for components. A small, versioned sidecar that starts during design and ships with component documentation. Independent of documentation frameworks, component libraries, and agent platforms.
 
-**Draft 0.1.2 · web components · experimental.** This records expectations and responsibilities; it does not certify accessibility or WCAG conformance.
+**Draft 0.2.0 · web components · experimental.** This records expectations and responsibilities; it does not certify accessibility or WCAG conformance.
 
 ## Start with one file — no installation
 
@@ -10,7 +10,7 @@ Copy [the smallest valid fieldnote](examples/base/component.fieldnote.yaml), ren
 
 ```yaml
 $schema: https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/fieldnote.schema.json
-schemaVersion: "0.1.2"
+schemaVersion: "0.2.0"
 component:
   id: my-component
   name: My component
@@ -41,9 +41,26 @@ Retain stable decision IDs as the component changes. Add the implementation vers
 
 The optional renderer below generates Markdown for documentation systems that accept it. Generate that page during your docs build rather than maintaining a second copy by hand.
 
+## Share decisions across variants and states
+
+Declare optional `configurations` in one component fieldnote. Decisions apply
+to all documented configurations unless scoped with `appliesTo: [secondary]`.
+The same scope field works on responsibilities, limitations, and checks.
+
+See the [button example](examples/button.fieldnote.yaml) and
+[selection rules](docs/configurations.md). The base template stays minimal.
+
+```sh
+node tools/fieldnote.mjs render examples/button.fieldnote.yaml --configuration secondary
+node tools/fieldnote.mjs resolve examples/button.fieldnote.yaml --configuration secondary
+```
+
+`resolve` outputs a valid JSON fieldnote with shared and selected items.
+[Migration to 0.2.0](docs/migration.md) covers existing records and results.
+
 ## Validate your own entries
 
-See [validation instructions](docs/validation.md) for files in another repository and local editor validation. A hosted service or published package is not required. Remote schema URLs need public access; use local schema files while this repository is private.
+See [validation instructions](docs/validation.md) for files in another repository and local editor validation. A hosted service or published package is not required. Use local schema files when a remote schema URL is unavailable.
 
 ## Optional tools
 
@@ -57,13 +74,14 @@ node tools/fieldnote.mjs validate examples/base/component.fieldnote.yaml
 node tools/fieldnote.mjs render examples/dialogue.fieldnote.yaml > dialogue.accessibility.md
 ```
 
-An editor or another validator supporting JSON Schema Draft 2020-12 can use the `$schema` URL for structural checks. The reference CLI additionally checks duplicate IDs and dangling decision references.
+An editor or another validator supporting JSON Schema Draft 2020-12 can use the `$schema` URL for structural checks. The reference CLI additionally checks duplicate IDs, decision references, and configuration scopes.
 
 ## The model
 
 | Field | Purpose |
 | --- | --- |
 | `component` | Identity, platform, optional implementation version and design/source links |
+| `configurations` | Optional named combinations of variant, state, theme, or other conditions |
 | `benchmarks` | Optional record-level source names, versions, and URLs; no conformance claim |
 | `guidance` | Optional profile ID and the version used to author the decisions |
 | `decisions` | Stable IDs, topics, optional questions, status, answers, rationale, and optional versioned source references |
@@ -73,13 +91,13 @@ An editor or another validator supporting JSON Schema Draft 2020-12 can use the 
 
 `open` is a valid state. `decided` requires an answer; `not-applicable` requires a reason. The CLI also rejects duplicate IDs and dangling decision references. Schema validity does not establish that the guidance, implementation, or answers are correct.
 
-JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or `.fieldnote.json` suffix. Unknown fields are rejected in 0.1.2 to catch mistakes early.
+JSON and YAML represent the same model. UTF-8 files use the `.fieldnote.yaml` or `.fieldnote.json` suffix. Unknown fields are rejected in 0.2.0 to catch mistakes early.
 
 ## Separate verification results
 
 [The results schema](schema/results.schema.json) records the fieldnote location, assessed implementation revision, check ID, outcome, observation date, environment, and evidence. Validate it using `node tools/fieldnote.mjs validate --results results.json`.
 
-Result validation currently validates structure; it does not resolve the linked fieldnote or prove the check exists. No sample result is presented as a real assessment. Updating a component never automatically renews old results.
+The CLI resolves the local fieldnote path relative to the results file and checks that each check ID and configuration applies. For configured components, each observation names exactly one `configuration`; shared procedures do not share outcomes. The shipped result fixture is synthetic. Validation does not execute checks or refresh evidence.
 
 ## Benchmarks
 

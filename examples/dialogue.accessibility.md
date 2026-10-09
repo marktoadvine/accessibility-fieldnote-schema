@@ -12,11 +12,15 @@ Sources informing decisions; not a conformance claim.
 
 ## Decisions
 
+<a id="decision-name"></a>
+
 ### What names the dialog?
 
 Status: **open**
 
 Unresolved.
+
+<a id="decision-initial-focus"></a>
 
 ### Where does focus go when it opens?
 
@@ -26,11 +30,15 @@ For this destructive confirmation, focus the Cancel button when opened.
 
 Reason: Avoid positioning focus on the destructive action.
 
+<a id="decision-keyboard-boundary"></a>
+
 ### How does keyboard navigation behave while it is open?
 
 Status: **open**
 
 Unresolved.
+
+<a id="decision-dismiss"></a>
 
 ### How can someone dismiss it?
 
@@ -38,17 +46,23 @@ Status: **open**
 
 Unresolved.
 
+<a id="decision-return-focus"></a>
+
 ### Where does focus return when it closes?
 
 Status: **open**
 
 Unresolved.
 
+<a id="decision-long-content"></a>
+
 ### What happens with long content, zoom, or a small viewport?
 
 Status: **open**
 
 Unresolved.
+
+<a id="decision-reduced-motion"></a>
 
 ### What changes when reduced motion is requested?
 
