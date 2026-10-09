@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/marktoadvine/accessibility-fieldnote-schema/main/schema/results.schema.json",
-  "title": "AFS verification results 0.1.2",
+  "title": "AFS verification results 0.2.0",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "schemaVersion": {
-      "const": "0.1.2"
+      "const": "0.2.0"
     },
     "fieldnote": {
       "type": "string",
@@ -44,6 +44,11 @@
           "evidence": {
             "type": "string",
             "minLength": 1
+          },
+          "configuration": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Exactly one tested configuration. Required by linked validation when the fieldnote declares configurations; no wildcard or implied coverage."
           }
         },
         "required": [

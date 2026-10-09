@@ -42,3 +42,5 @@ decisions:
 ```
 
 See [the custom-component example](../custom.fieldnote.yaml) for a record without questions or a pack.
+
+For variants and states, add optional [configurations](../../docs/configurations.md) when needed. Shared decisions can stay in this file; the base template requires no configuration fields.

@@ -1,6 +1,14 @@
 # Changelog
 
-## 0.1.2 — working branch
+## 0.2.0 — working branch
+
+- Added optional named configurations and additive `appliesTo` scopes for decisions, responsibilities, limitations, and checks.
+- Added configuration selection for Markdown and a `resolve` command for valid JSON views.
+- Check references must apply throughout the check's scope. Results name one configuration and are validated against their linked local fieldnote.
+- Added an illustrative button fixture covering two variants, disabled states, and forced colors; included selection, migration, and consumer guidance.
+- Kept a flat record valid with only a schema-version update. Configuration fields remain optional.
+
+## 0.1.2
 
 - Added optional record-level benchmarks with name, version, and URL; renders source references without implying conformance.
 - Update `schemaVersion` to 0.1.2; benchmark entries remain optional.

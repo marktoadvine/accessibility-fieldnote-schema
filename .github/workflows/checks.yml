@@ -18,3 +18,5 @@ jobs:
         run: npm test
       - name: Validate full and barebones example records
         run: npm run check:examples
+      - name: Validate result fixtures and linked configuration scope
+        run: npm run check:results
